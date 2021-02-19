@@ -2,6 +2,7 @@
     --blue: #444347;
     --orange: #ffa500;
     --red: #da1852;
+    --gray: rgb(73, 73, 73)
 }
 
 * {
@@ -12,7 +13,7 @@
 }
 
 body {
-    background: white;
+    background: #282828;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -27,17 +28,27 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
     font-size: 1.5em;
-    border: 1px solid var(--orange);
-    gap: 2px
+    border: 1px solid black;
+    gap: 5px;
+    padding: 10px;
+    background-color: var(--gray);
+    border-radius: 10px;
+
+}
+
+#display {
+    color: white;
+    border-radius: 5px;
 }
 
 .button {
-    outline: 1px solid azure;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black;
-    color: var(--red)
+    color: var(--red);
+    border-radius: 5px;
+    user-select: none;
 }
 
 .button:hover {
