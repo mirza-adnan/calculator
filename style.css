@@ -66,6 +66,21 @@ body {
 #display {
     grid-column: 1 / 5;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#display-1 {
+    width: 100%;
+    color: rgb(163, 163, 163);
+    font-size: 20px;
+    text-align: left;
+    height: 40%;
+}
+
+#display-2 {
+    width: 100%;
+    height: 60%;
 }
 
 #ac {
@@ -94,7 +109,7 @@ body {
 }
 
 .operator {
-    transition: all 0.2s;
+    transition: all 0.3s;
     text-shadow: none;
 }
 
