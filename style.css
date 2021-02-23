@@ -16,17 +16,21 @@ body {
     background: #282828;
     height: 100vh;
     display: flex;
-    align-items: center;
     font-family: 'Roboto Mono', monospace;
     flex-direction: column;
 }
 
 #instructions {
     text-align: justify;
-    padding-top: 30px;
+    padding-top: 20px;
     color: #eeeeee;
-    transition: all 10s;
+    transition: all 9s;
     font-size: 15px;
+    margin: 0 auto;
+}
+
+#instructions h2 {
+    color: var(--red);
 }
 
 #calculator {
@@ -133,4 +137,15 @@ body {
 
 .number:hover {
     text-shadow: 0px 0px 3px #e04574;
+}
+
+@media screen and (max-width: 400px) {
+    #calculator {
+        transform: scale(0.85);
+    }
+    
+    #instructions {
+        transform: scale(0.8);
+        display: none;
+    }
 }
