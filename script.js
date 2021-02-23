@@ -11,7 +11,8 @@ const equal = document.querySelector("#equal");
 const decimal = document.querySelector("#decimal");
 
 let operator = null;
-let result = 0;
+let result = "";
+let reset = false;
 
 // functions for all the operators
 function add(a, b) {
@@ -30,6 +31,7 @@ function divide(a, b) {
     result = a / b;
 }
 
+// calling the appropriate function based on the operator that is clicked
 function operate() {
     let initialNum =  Number(secondDisplay.textContent);
     let secondNum = Number(mainDisplay.textContent);
@@ -43,10 +45,18 @@ function operate() {
         multiply(initialNum, secondNum);
     }
     if (operator == "/") {
-        divide(initialNum, secondNum);
+        if (secondNum == 0) {
+            alert("Oops. You cannot divide by zero!")
+            ac.click()
+            result = "";
+        } else {
+            divide(initialNum, secondNum);
+        }
+        
     }
 }
 
+// displaying numbers on screen based on whether it is the first input or not
 function display(sign) {
     if (secondDisplay.textContent) {
         operate()
@@ -57,22 +67,27 @@ function display(sign) {
     mainDisplay.textContent = "";
     secondDisplay.textContent = result;
     operator = sign;
+    reset = false;
 }
         
 
 // making numbers appear on the display
 numbers.forEach(number => {
+    if (reset) {
+        ac.click()
+    }
     number.addEventListener("click", function() {
         const numberText = number.textContent;
         mainDisplay.textContent += numberText;
     })
 })
 
-// clearing everything from the display
+// resetting everything
 ac.addEventListener("click", function() {
     mainDisplay.textContent = "";
     secondDisplay.textContent = "";
     operator = null;
+    result = 0;
 })
 
 // event listeners for operators
@@ -101,11 +116,15 @@ equal.addEventListener("click", function() {
         mainDisplay.textContent = secondDisplay.textContent;
         secondDisplay.textContent = "";
     }
-
-
+    reset = true;
 })
 
 // decimal function
 decimal.addEventListener("click", function() {
     mainDisplay.textContent += ".";
+})
+
+//backspace function
+backspace.addEventListener("click", function() {
+    mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
 })
