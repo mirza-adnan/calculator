@@ -18,6 +18,7 @@ body {
     display: flex;
     font-family: 'Roboto Mono', monospace;
     flex-direction: column;
+    align-items: center;
 }
 
 #instructions {
@@ -139,13 +140,14 @@ body {
 
 }
 
+@media screen and (max-width: 500px) {
+    #instructions {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 400px) {
     #calculator {
-        transform: scale(0.85);
-    }
-    
-    #instructions {
-        transform: scale(0.8);
-        display: none;
+        transform: scale(0.7);
     }
 }
