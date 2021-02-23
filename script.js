@@ -3,29 +3,68 @@ const mainDisplay = document.querySelector("#display-2");
 const secondDisplay = document.querySelector("#display-1")
 const ac = document.querySelector("#ac");
 const backspace = document.querySelector("#backspace");
-const add = document.querySelector("#add");
-const minus = document.querySelector("#minus");
-const multiply = document.querySelector("#multiply");
-const divide = document.querySelector("#divide");
+const addButton = document.querySelector("#add");
+const minusButton = document.querySelector("#minus");
+const multiplyButton = document.querySelector("#multiply");
+const divideButton = document.querySelector("#divide");
 const equal = document.querySelector("#equal");
 const decimal = document.querySelector("#decimal");
 
 let operator = null;
 let result = 0;
 
+// functions for all the operators
+function add(a, b) {
+    result = a + b;
+}
+
+function subtract(a, b) {
+    result = a - b;
+}
+
+function multiply(a, b) {
+    result = a * b;
+}
+
+function divide(a, b) {
+    result = a / b;
+}
+
 function operate() {
-        let initialNum =  Number(secondDisplay.textContent);
-        let secondNum = Number(mainDisplay.textContent);
-        if (operator == "+" && secondDisplay.textContent) {
-            result = initialNum + secondNum;
-            secondDisplay.textContent = String(result);
-        }
+    let initialNum =  Number(secondDisplay.textContent);
+    let secondNum = Number(mainDisplay.textContent);
+    if (operator == "+") {
+        add(initialNum, secondNum);
+    }
+    if (operator == "-") {
+        subtract(initialNum, secondNum);
+    }
+    if (operator == "*") {
+        multiply(initialNum, secondNum);
+    }
+    if (operator == "/") {
+        divide(initialNum, secondNum);
+    }
+}
+
+function display(sign) {
+    if (secondDisplay.textContent) {
+        operate()
+    } else {
+        result = mainDisplay.textContent
+        secondDisplay.textContent = result;
+    }
+    mainDisplay.textContent = "";
+    secondDisplay.textContent = result;
+    operator = sign;
+}
+        
 
 // making numbers appear on the display
 numbers.forEach(number => {
     number.addEventListener("click", function() {
         const numberText = number.textContent;
-        mainDisplay.textContent += numberText;   
+        mainDisplay.textContent += numberText;
     })
 })
 
@@ -36,59 +75,35 @@ ac.addEventListener("click", function() {
     operator = null;
 })
 
-// mathematical operations
-add.addEventListener("click", function() {
-    if (secondDisplay.textContent) { // used when you want to add multiple numbers
-        let initialNum = Number(secondDisplay.textContent);
-        let secondNum = Number(mainDisplay.textContent);
-        secondDisplay.textContent = initialNum + secondNum;
-        result = initialNum + secondNum;
-        mainDisplay.textContent = "";
-    } else { // used to add first two numbers
-        let initialNum = mainDisplay.textContent;
-        mainDisplay.textContent = "";
-        secondDisplay.textContent = initialNum;
-        result = Number(initialNum);
-    }
-    operator = "+";
+// event listeners for operators
+addButton.addEventListener("click", function() {
+    display("+");
 })
 
-minus.addEventListener("click", function() {
-    if (secondDisplay.textContent) {
-        let initialNum = Number(secondDisplay.textContent);
-        let secondNum = Number(mainDisplay.textContent);
-        secondDisplay.textContent = initialNum - secondNum;
-        result = initialNum - secondNum;
-        mainDisplay.textContent = "";
-    } else { // used to add first two numbers
-        let initialNum = mainDisplay.textContent;
-        mainDisplay.textContent = "";
-        secondDisplay.textContent = initialNum;
-        result = Number(initialNum);
-    }
-    operator = "-";
+minusButton.addEventListener("click", function() {
+    display("-")
 })
 
+multiplyButton.addEventListener("click", function() {
+    display("*");
+})
 
-
+divideButton.addEventListener("click", function() {
+    display("/")
+})
 
 equal.addEventListener("click", function() {
-    if (operator == "+" && secondDisplay.textContent) {
-        let num = Number(mainDisplay.textContent);
-        result = result + num;
-        mainDisplay.textContent = String(result);
+    if (secondDisplay.textContent) {
+        operate()
         secondDisplay.textContent = "";
-        operator = null;
-    } else if (operator == "-" && secondDisplay.textContent) {
-        let num = Number(mainDisplay.textContent);
-        result = result - num;
-        mainDisplay.textContent = String(result);
+        mainDisplay.textContent = result;
+    } else {
+        mainDisplay.textContent = secondDisplay.textContent;
         secondDisplay.textContent = "";
-        operator = null;
     }
-    
-})
 
+
+})
 
 // decimal function
 decimal.addEventListener("click", function() {
