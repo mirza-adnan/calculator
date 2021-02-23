@@ -8,8 +8,18 @@ const minus = document.querySelector("#minus");
 const multiply = document.querySelector("#multiply");
 const divide = document.querySelector("#divide");
 const equal = document.querySelector("#equal");
+const decimal = document.querySelector("#decimal");
 
 let operator = null;
+let result = 0;
+
+function operate() {
+        let initialNum =  Number(secondDisplay.textContent);
+        let secondNum = Number(mainDisplay.textContent);
+        if (operator == "+" && secondDisplay.textContent) {
+            result = initialNum + secondNum;
+            secondDisplay.textContent = String(result);
+        }
 
 // making numbers appear on the display
 numbers.forEach(number => {
@@ -19,7 +29,7 @@ numbers.forEach(number => {
     })
 })
 
-//clearing everything from the display
+// clearing everything from the display
 ac.addEventListener("click", function() {
     mainDisplay.textContent = "";
     secondDisplay.textContent = "";
@@ -28,20 +38,59 @@ ac.addEventListener("click", function() {
 
 // mathematical operations
 add.addEventListener("click", function() {
-    num = mainDisplay.textContent;
-    secondDisplay.textContent = num + "(+)";
-    num = Number(num);
-    mainDisplay.textContent = "";
+    if (secondDisplay.textContent) { // used when you want to add multiple numbers
+        let initialNum = Number(secondDisplay.textContent);
+        let secondNum = Number(mainDisplay.textContent);
+        secondDisplay.textContent = initialNum + secondNum;
+        result = initialNum + secondNum;
+        mainDisplay.textContent = "";
+    } else { // used to add first two numbers
+        let initialNum = mainDisplay.textContent;
+        mainDisplay.textContent = "";
+        secondDisplay.textContent = initialNum;
+        result = Number(initialNum);
+    }
     operator = "+";
-    return num
 })
 
+minus.addEventListener("click", function() {
+    if (secondDisplay.textContent) {
+        let initialNum = Number(secondDisplay.textContent);
+        let secondNum = Number(mainDisplay.textContent);
+        secondDisplay.textContent = initialNum - secondNum;
+        result = initialNum - secondNum;
+        mainDisplay.textContent = "";
+    } else { // used to add first two numbers
+        let initialNum = mainDisplay.textContent;
+        mainDisplay.textContent = "";
+        secondDisplay.textContent = initialNum;
+        result = Number(initialNum);
+    }
+    operator = "-";
+})
+
+
+
+
 equal.addEventListener("click", function() {
-    if (operator = "+" && secondDisplay.textContent) {
-        secondNum = Number(mainDisplay.textContent);
-        let sum = num + secondNum;
-        mainDisplay.textContent = String(sum);
+    if (operator == "+" && secondDisplay.textContent) {
+        let num = Number(mainDisplay.textContent);
+        result = result + num;
+        mainDisplay.textContent = String(result);
         secondDisplay.textContent = "";
         operator = null;
-    };
+    } else if (operator == "-" && secondDisplay.textContent) {
+        let num = Number(mainDisplay.textContent);
+        result = result - num;
+        mainDisplay.textContent = String(result);
+        secondDisplay.textContent = "";
+        operator = null;
+    }
+    
+})
+
+
+// decimal function
+decimal.addEventListener("click", function() {
+    mainDisplay.textContent += ".";
 })
