@@ -48,7 +48,6 @@ function operate() {
         if (secondNum == 0) {
             alert("Oops. You cannot divide by zero!")
             ac.click()
-            result = "";
         } else {
             divide(initialNum, secondNum);
         }
@@ -87,7 +86,7 @@ ac.addEventListener("click", function() {
     mainDisplay.textContent = "";
     secondDisplay.textContent = "";
     operator = null;
-    result = 0;
+    result = "";
 })
 
 // event listeners for operators
