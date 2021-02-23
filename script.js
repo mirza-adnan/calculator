@@ -97,6 +97,7 @@ ac.addEventListener("click", function() {
     secondDisplay.textContent = "";
     operator = null;
     result = "";
+    equalPressed = false;
 })
 
 // event listeners for operators
@@ -145,7 +146,7 @@ backspace.addEventListener("click", function() {
 // keyboard support
 window.addEventListener("keydown", function(e) {
     const key = document.querySelector(`div[data-key="${e.key}"]`);
-    key.click();
-    console.clear()
+    if(key) key.click();
+    
 })
 
