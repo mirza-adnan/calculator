@@ -131,7 +131,10 @@ equal.addEventListener("click", function() {
 
 // decimal function
 decimal.addEventListener("click", function() {
-    mainDisplay.textContent += ".";
+    if (!(mainDisplay.textContent.includes("."))) {
+        mainDisplay.textContent += ".";
+    }
+    
 })
 
 //backspace function
