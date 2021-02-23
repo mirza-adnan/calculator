@@ -10,29 +10,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="instructions">
+        <h2>Keyboard Controls</h2>
+        <p>Use the number keys(1,2,3..) for Numbers.</p>
+        <p>Use the operator keys(+,-..) for Operators.</p>
+        <p>Use Enter key for Equal button.</p>
+        <p>Use Backspace button for deleting a number and use the Esc key to clear the screen.</p>
+    </div>
     <div id="calculator">
         <div id="display">
             <div id="display-1"></div>
             <div id="display-2"></div>
         </div>
-        <div class="button" id="ac">AC</div>
-        <div class="button" id="backspace"><img src="backspace.png" alt="backspace icon"></div>
-        <div class="button operator" id="divide">/</div>
-        <div class="button number" id="seven">7</div>
-        <div class="button number" id="eight">8</div>
-        <div class="button number" id="nine">9</div>
-        <div class="button operator" id="multiply">x</div>
-        <div class="button number" id="four">4</div>
-        <div class="button number" id="five">5</div>
-        <div class="button number" id="six">6</div>
-        <div class="button operator" id="minus">-</div>
-        <div class="button number" id="one">1</div>
-        <div class="button number" id="two">2</div>
-        <div class="button number" id="three">3</div>
-        <div class="button operator" id="add">+</div>
-        <div class="button number" id="zero">0</div>
-        <div class="button" id="decimal">.</div>
-        <div class="button operator" id="equal">=</div>
+        <div class="button" id="ac" data-key="Escape">AC</div>
+        <div class="button" id="backspace" data-key="Backspace"><img src="backspace.png" alt="backspace icon"></div>
+        <div class="button operator" id="divide" data-key="/">/</div>
+        <div class="button number" id="seven" data-key="7">7</div>
+        <div class="button number" id="eight" data-key="8">8</div>
+        <div class="button number" id="nine" data-key="9">9</div>
+        <div class="button operator" id="multiply" data-key="*">x</div>
+        <div class="button number" id="four" data-key="4">4</div>
+        <div class="button number" id="five" data-key="5">5</div>
+        <div class="button number" id="six" data-key="6">6</div>
+        <div class="button operator" id="minus" data-key="-">-</div>
+        <div class="button number" id="one" data-key="1">1</div>
+        <div class="button number" id="two" data-key="2">2</div>
+        <div class="button number" id="three" data-key="3">3</div>
+        <div class="button operator" id="add" data-key="+">+</div>
+        <div class="button number" id="zero" data-key="0">0</div>
+        <div class="button" id="decimal" data-key=".">.</div>
+        <div class="button operator" id="equal" data-key="Enter">=</div>
     </div>
     <script src="script.js"></script>
 </body>

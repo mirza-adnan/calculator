@@ -9,10 +9,20 @@ const multiplyButton = document.querySelector("#multiply");
 const divideButton = document.querySelector("#divide");
 const equal = document.querySelector("#equal");
 const decimal = document.querySelector("#decimal");
+const instructions = document.querySelector("#instructions")
 
 let operator = null;
 let result = "";
-let reset = false;
+let equalPressed = false;
+
+//removing the keyboard instructions
+window.addEventListener("load", function() {
+    instructions.style.cssText = "opacity: 0;";
+})
+
+instructions.addEventListener("transitionend", function() {
+    instructions.style.cssText = "display: none;";
+})
 
 // functions for all the operators
 function add(a, b) {
@@ -66,16 +76,16 @@ function display(sign) {
     mainDisplay.textContent = "";
     secondDisplay.textContent = result;
     operator = sign;
-    reset = false;
+    equalPressed = false;
 }
         
 
 // making numbers appear on the display
 numbers.forEach(number => {
-    if (reset) {
-        ac.click()
-    }
     number.addEventListener("click", function() {
+        if (equalPressed) {
+            ac.click()
+        }
         const numberText = number.textContent;
         mainDisplay.textContent += numberText;
     })
@@ -111,11 +121,12 @@ equal.addEventListener("click", function() {
         operate()
         secondDisplay.textContent = "";
         mainDisplay.textContent = result;
+        equalPressed = true;
     } else {
         mainDisplay.textContent = secondDisplay.textContent;
         secondDisplay.textContent = "";
     }
-    reset = true;
+    
 })
 
 // decimal function
@@ -127,3 +138,11 @@ decimal.addEventListener("click", function() {
 backspace.addEventListener("click", function() {
     mainDisplay.textContent = mainDisplay.textContent.slice(0, -1);
 })
+
+// keyboard support
+window.addEventListener("keydown", function(e) {
+    const key = document.querySelector(`div[data-key="${e.key}"]`);
+    key.click();
+    console.clear()
+})
+

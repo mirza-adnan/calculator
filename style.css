@@ -18,6 +18,15 @@ body {
     display: flex;
     align-items: center;
     font-family: 'Roboto Mono', monospace;
+    flex-direction: column;
+}
+
+#instructions {
+    text-align: justify;
+    padding-top: 30px;
+    color: #eeeeee;
+    transition: all 10s;
+    font-size: 15px;
 }
 
 #calculator {
