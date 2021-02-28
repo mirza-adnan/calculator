@@ -95,7 +95,6 @@ body {
 #display-2 {
     width: 100%;
     height: 60%;
-    word-break: break-all;
     overflow: auto;
 }
 
