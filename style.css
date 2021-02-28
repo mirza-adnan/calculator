@@ -90,6 +90,8 @@ body {
     font-size: 20px;
     text-align: left;
     height: 40%;
+    margin-bottom: 10px;
+    word-break: break-all;
 }
 
 #display-2 {
